@@ -1,6 +1,6 @@
 {
     "name": "react-native-marked-range-text-input",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "An extended TextInput component with onMarkedRangedChanged callback",
     "repository": {
         "type": "git",

@@ -53,6 +53,7 @@ export default class extends TextInput {
             return;
         }
 
+        this._previousMarkedRange = previousMarkedRange;
         onMarkedRangeChanged && onMarkedRangeChanged(event);
         start === end && onChangeText && onChangeText(lastNativeText);
     }
