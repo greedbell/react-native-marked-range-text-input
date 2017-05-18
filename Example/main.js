@@ -29,7 +29,7 @@ export default class MarkedRangeTextInput extends Component {
         });
     }
 
-    _onChangeText(text) {
+    _onChangeText({ nativeEvent: { text } }) {
         this.setState({
             text
         });
@@ -51,6 +51,7 @@ export default class MarkedRangeTextInput extends Component {
                     onMarkedRangeChanged={this._onMarkedRangeChanged}
                     onChangeText={this._onChangeText}
                     onChange={this._onChange}
+                    multiline={true}
                 />
                 <Text style={styles.text}>
                     Marked Range: {markedRange.start + ''} - {markedRange.end + ''} ({markedRange.text + ''})

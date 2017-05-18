@@ -8,15 +8,19 @@ export default class extends TextInput {
 
     static propTypes = {
         ...TextInput.propTypes,
-        onMarkedRangeChanged: PropTypes.func
+        onMarkedRangeChanged: PropTypes.func,
+        onChangeText: PropTypes.func
     };
 
     componentWillMount() {
         this._onMarkedRangeChanged = this.onMarkedRangeChanged.bind(this);
         this._onChange = this.onChange.bind(this);
+        this._onChangeText = this.onChangeText.bind(this);
     }
 
     _previousMarkedRange = {};
+    _previousInput = "";
+    _previousText = "";
 
     onChange(event) {
         const { text, eventCount } = event.nativeEvent;
@@ -36,16 +40,27 @@ export default class extends TextInput {
             return;
         }
 
-        this._lastNativeText = text;
+        this.forceUpdate();
+    }
+
+    onChangeText(event) {
+        const { onChangeText } = this.props;
+        const previousText = this._previousText;
+        const { nativeEvent: { text: text } } = event;
+
+        if (previousText === text) {
+            return;
+        }
+        onChangeText && onChangeText(event);
+        this._previousText = text;
         this.forceUpdate();
     }
 
     onMarkedRangeChanged(event) {
-        const { onChangeText, onMarkedRangeChanged } = this.props;
-        const lastNativeText = this._lastNativeText;
+        const { onMarkedRangeChanged } = this.props;
 
         const previousMarkedRange = this._previousMarkedRange;
-        const { nativeEvent: { markedRange: { start, end, text } } } = event;
+        const { nativeEvent: { markedRange: { start, end, markedText, text } } } = event;
 
         if (previousMarkedRange.start === start &&
             previousMarkedRange.end === end &&
@@ -53,33 +68,63 @@ export default class extends TextInput {
             return;
         }
 
-        this._previousMarkedRange = previousMarkedRange;
         onMarkedRangeChanged && onMarkedRangeChanged(event);
-        start === end && onChangeText && onChangeText(lastNativeText);
+        this._previousMarkedRange = { start, end, markedText, text };
+        this.forceUpdate();
     }
-
 
     render() {
         const wrapper = super.render();
         const textInput = wrapper.props.children;
 
-        const markedRangeTextInput = (
-            <RNMarkedRangeTextInput
-                {...textInput.props}
-                ref={this._setNativeRef}
-                onChange={this._onChange}
-                onMarkedRangeChanged={this._onMarkedRangeChanged}
-            />
-        );
+        let markedRangeTextInput = null;
+            const props = {
+            ...textInput.props,
+            ref: this._setNativeRef,
+            onChange: this._onChange,
+            onChangeText: this._onChangeText,
+            onMarkedRangeChanged: this._onMarkedRangeChanged
+        };
 
-        return cloneElement(wrapper, wrapper.props, markedRangeTextInput);
+        let NativeTextInput;
+
+        if (true) {
+            if (this.props.multiline) {
+                NativeTextInput = RNMarkedRangeTextView;
+            } else {
+                NativeTextInput = RNMarkedRangeTextField;
+            }
+        } else {
+            NativeTextInput = RNMarkedRangeTextInput;
+        }
+
+        return cloneElement(wrapper, wrapper.props, <NativeTextInput {...props} />);
     }
 }
 
 const RNMarkedRangeTextInput = createReactNativeComponentClass({
     validAttributes: {
         ...UIManager.RCTTextField.validAttributes,
-        onMarkedRangeChanged: true
+        onMarkedRangeChanged: true,
+        onChangeText: true
     },
     uiViewClassName: 'RNMarkedRangeTextInput'
+});
+
+const RNMarkedRangeTextField = createReactNativeComponentClass({
+    validAttributes: {
+        ...UIManager.RCTTextField.validAttributes,
+        onMarkedRangeChanged: true,
+        onChangeText: true
+    },
+    uiViewClassName: 'RNMarkedRangeTextField'
+});
+
+const RNMarkedRangeTextView = createReactNativeComponentClass({
+    validAttributes: {
+        ...UIManager.RCTTextView.validAttributes,
+        onMarkedRangeChanged: true,
+        onChangeText: true
+    },
+    uiViewClassName: 'RNMarkedRangeTextView'
 });
