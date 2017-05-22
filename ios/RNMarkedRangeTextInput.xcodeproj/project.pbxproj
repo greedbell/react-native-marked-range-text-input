@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1017893C1B283EE1006C41B8 /* libRNMarkedRangeTextInput.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 101789301B283EE1006C41B8 /* libRNMarkedRangeTextInput.a */; };
-		7F67D7661EB0C4C70085CBA2 /* RNMarkedRangeTextInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67D7651EB0C4C70085CBA2 /* RNMarkedRangeTextInputManager.m */; };
-		7FD6601E1EB0C06C006944C5 /* RNMarkedRangeTextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD6601D1EB0C06C006944C5 /* RNMarkedRangeTextInput.m */; };
+		283A7B011ECD9FD800655D5D /* RNMarkedRangeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A7B001ECD9FD800655D5D /* RNMarkedRangeTextView.m */; };
+		283A7B041ECDA02300655D5D /* RNMarkedRangeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A7B031ECDA02300655D5D /* RNMarkedRangeTextField.m */; };
+		283A7B071ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A7B061ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.m */; };
+		283A7B0A1ECDA72F00655D5D /* RNMarkedRangeTextViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A7B091ECDA72F00655D5D /* RNMarkedRangeTextViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +39,14 @@
 /* Begin PBXFileReference section */
 		101789301B283EE1006C41B8 /* libRNMarkedRangeTextInput.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNMarkedRangeTextInput.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1017893B1B283EE1006C41B8 /* RNMarkedRangeTextInputTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RNMarkedRangeTextInputTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F67D7641EB0C48E0085CBA2 /* RNMarkedRangeTextInputManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextInputManager.h; sourceTree = "<group>"; };
-		7F67D7651EB0C4C70085CBA2 /* RNMarkedRangeTextInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextInputManager.m; sourceTree = "<group>"; };
-		7FD6601C1EB0C06C006944C5 /* RNMarkedRangeTextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextInput.h; sourceTree = "<group>"; };
-		7FD6601D1EB0C06C006944C5 /* RNMarkedRangeTextInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextInput.m; sourceTree = "<group>"; };
+		283A7AFF1ECD9FD800655D5D /* RNMarkedRangeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextView.h; sourceTree = "<group>"; };
+		283A7B001ECD9FD800655D5D /* RNMarkedRangeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextView.m; sourceTree = "<group>"; };
+		283A7B021ECDA02300655D5D /* RNMarkedRangeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextField.h; sourceTree = "<group>"; };
+		283A7B031ECDA02300655D5D /* RNMarkedRangeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextField.m; sourceTree = "<group>"; };
+		283A7B051ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextFieldManager.h; sourceTree = "<group>"; };
+		283A7B061ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextFieldManager.m; sourceTree = "<group>"; };
+		283A7B081ECDA72F00655D5D /* RNMarkedRangeTextViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMarkedRangeTextViewManager.h; sourceTree = "<group>"; };
+		283A7B091ECDA72F00655D5D /* RNMarkedRangeTextViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMarkedRangeTextViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +71,15 @@
 		101789271B283EE1006C41B8 = {
 			isa = PBXGroup;
 			children = (
-				7F67D7641EB0C48E0085CBA2 /* RNMarkedRangeTextInputManager.h */,
-				7F67D7651EB0C4C70085CBA2 /* RNMarkedRangeTextInputManager.m */,
-				7FD6601C1EB0C06C006944C5 /* RNMarkedRangeTextInput.h */,
-				7FD6601D1EB0C06C006944C5 /* RNMarkedRangeTextInput.m */,
 				101789311B283EE1006C41B8 /* Products */,
+				283A7B021ECDA02300655D5D /* RNMarkedRangeTextField.h */,
+				283A7B031ECDA02300655D5D /* RNMarkedRangeTextField.m */,
+				283A7B051ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.h */,
+				283A7B061ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.m */,
+				283A7AFF1ECD9FD800655D5D /* RNMarkedRangeTextView.h */,
+				283A7B001ECD9FD800655D5D /* RNMarkedRangeTextView.m */,
+				283A7B081ECDA72F00655D5D /* RNMarkedRangeTextViewManager.h */,
+				283A7B091ECDA72F00655D5D /* RNMarkedRangeTextViewManager.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +136,7 @@
 		101789281B283EE1006C41B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RN;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = shimo;
 				TargetAttributes = {
@@ -170,8 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FD6601E1EB0C06C006944C5 /* RNMarkedRangeTextInput.m in Sources */,
-				7F67D7661EB0C4C70085CBA2 /* RNMarkedRangeTextInputManager.m in Sources */,
+				283A7B071ECDA6DC00655D5D /* RNMarkedRangeTextFieldManager.m in Sources */,
+				283A7B041ECDA02300655D5D /* RNMarkedRangeTextField.m in Sources */,
+				283A7B011ECD9FD800655D5D /* RNMarkedRangeTextView.m in Sources */,
+				283A7B0A1ECDA72F00655D5D /* RNMarkedRangeTextViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
