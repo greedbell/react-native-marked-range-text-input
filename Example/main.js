@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+// import { TextInput } from 'react-native';
 import TextInput from 'react-native-marked-range-text-input';
+
 
 export default class MarkedRangeTextInput extends Component {
     constructor(props) {
@@ -13,7 +15,11 @@ export default class MarkedRangeTextInput extends Component {
                 text: null
             },
             input: null,
-            text: null
+            text: null,
+            selection: {
+                start: 0,
+                end: 0
+            }
         };
     }
 
@@ -21,17 +27,12 @@ export default class MarkedRangeTextInput extends Component {
         this._onMarkedRangeChanged = this._onMarkedRangeChanged.bind(this);
         this._onChangeText = this._onChangeText.bind(this);
         this._onChange = this._onChange.bind(this);
+        this._onSelectionChange = this._onSelectionChange.bind(this);
     }
 
     _onMarkedRangeChanged({ nativeEvent: { markedRange } }) {
         this.setState({
             markedRange
-        });
-    }
-
-    _onChangeText({ nativeEvent: { text } }) {
-        this.setState({
-            text
         });
     }
 
@@ -41,20 +42,36 @@ export default class MarkedRangeTextInput extends Component {
         });
     }
 
+    _onChangeText( text ) {
+        this.setState({
+            text
+        });
+    }
+
+    _onSelectionChange({ nativeEvent: { selection } }) {
+        this.setState({
+            selection
+        });
+    }
+
     render() {
-        const { markedRange, input, text } = this.state;
+        const { markedRange, selection, input, text } = this.state;
 
         return (
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
                     onMarkedRangeChanged={this._onMarkedRangeChanged}
-                    onChangeText={this._onChangeText}
                     onChange={this._onChange}
+                    onChangeText={this._onChangeText}
+                    onSelectionChange={this._onSelectionChange}
                     multiline={true}
                 />
                 <Text style={styles.text}>
                     Marked Range: {markedRange.start + ''} - {markedRange.end + ''} ({markedRange.text + ''})
+                </Text>
+                <Text style={styles.text}>
+                    Selection: {selection.start + ''} - {selection.end + ''}
                 </Text>
                 <Text style={styles.text}>
                     Input: {input || ''}

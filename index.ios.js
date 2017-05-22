@@ -1,3 +1,7 @@
+// import MarkedRangeTextInput from './MarkedRangeTextInput';
+// export default MarkedRangeTextInput;
+
+
 import React, { cloneElement, PropTypes } from 'react';
 import { TextInput, UIManager, NativeModules } from 'react-native';
 import createReactNativeComponentClass from 'react-native/Libraries/Renderer/src/renderers/native/createReactNativeComponentClass';
@@ -51,7 +55,7 @@ export default class extends TextInput {
         if (previousText === text) {
             return;
         }
-        onChangeText && onChangeText(event);
+        onChangeText && onChangeText(text);
         this._previousText = text;
         this.forceUpdate();
     }
@@ -78,7 +82,7 @@ export default class extends TextInput {
         const textInput = wrapper.props.children;
 
         let markedRangeTextInput = null;
-            const props = {
+        const props = {
             ...textInput.props,
             ref: this._setNativeRef,
             onChange: this._onChange,
@@ -88,28 +92,14 @@ export default class extends TextInput {
 
         let NativeTextInput;
 
-        if (true) {
-            if (this.props.multiline) {
-                NativeTextInput = RNMarkedRangeTextView;
-            } else {
-                NativeTextInput = RNMarkedRangeTextField;
-            }
+        if (this.props.multiline) {
+            NativeTextInput = RNMarkedRangeTextView;
         } else {
-            NativeTextInput = RNMarkedRangeTextInput;
+            NativeTextInput = RNMarkedRangeTextField;
         }
-
         return cloneElement(wrapper, wrapper.props, <NativeTextInput {...props} />);
     }
 }
-
-const RNMarkedRangeTextInput = createReactNativeComponentClass({
-    validAttributes: {
-        ...UIManager.RCTTextField.validAttributes,
-        onMarkedRangeChanged: true,
-        onChangeText: true
-    },
-    uiViewClassName: 'RNMarkedRangeTextInput'
-});
 
 const RNMarkedRangeTextField = createReactNativeComponentClass({
     validAttributes: {
